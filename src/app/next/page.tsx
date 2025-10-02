@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 export default function NextPage() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const router = require('next/navigation').useRouter();
   const modes = [
     { label: "Travel's", color: "from-blue-500 to-blue-700", icon: "🚗" },
@@ -27,8 +28,29 @@ export default function NextPage() {
 
   return (
     <main className="flex min-h-screen bg-gradient-to-br from-gray-100 to-gray-300">
-      {/* Animated Sidebar - hidden on mobile, visible on sm+ */}
-      <aside className="hidden sm:flex flex-col items-center py-8 px-2 sm:px-4 w-16 sm:w-56 bg-white bg-opacity-80 shadow-xl rounded-r-3xl animate-slide-in-sidebar fixed left-0 top-0 h-full z-10">
+      {/* Mobile Sidebar Toggle Button */}
+      <button
+        className="sm:hidden fixed top-4 left-4 z-50 bg-white rounded-full shadow-lg p-2 border border-gray-300"
+        onClick={() => setSidebarOpen(true)}
+        aria-label="Open sidebar"
+      >
+        <span className="text-xl">☰</span>
+      </button>
+      {/* Sidebar - responsive */}
+      <aside
+        className={`
+          ${sidebarOpen ? "flex" : "hidden"}
+          sm:flex flex-col items-center py-8 px-2 sm:px-4 w-64 sm:w-56 bg-white bg-opacity-90 shadow-xl rounded-r-3xl animate-slide-in-sidebar fixed left-0 top-0 h-full z-40
+        `}
+      >
+        {/* Mobile Close Button */}
+        <button
+          className="sm:hidden absolute top-4 right-4 bg-gray-100 rounded-full p-2 shadow"
+          onClick={() => setSidebarOpen(false)}
+          aria-label="Close sidebar"
+        >
+          <span className="text-lg">✕</span>
+        </button>
         {/* Main navigation */}
         <div className="w-full mb-8">
           {sidebarItems.map((item) => (
@@ -54,7 +76,20 @@ export default function NextPage() {
                   className="flex items-center gap-2 group px-2 py-2 rounded-lg w-full text-left transition-colors cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4 sm:mb-5 last:mb-0"
                 >
                   <span className="text-xl sm:text-2xl">{item.icon}</span>
-                  <span className="hidden sm:inline text-sm font-medium text-gray-700">{item.label}</span>
+                  <span className="hidden sm:inline text-sm font-medium text-black">{item.label}</span>
+                </button>
+              );
+            }
+            if (item.label === "Our Top Travelling Partner") {
+              return (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={() => router.push('/next/partners')}
+                  className="flex items-center gap-2 group px-2 py-2 rounded-lg w-full text-left transition-colors cursor-pointer hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-400 mb-4 sm:mb-5 last:mb-0"
+                >
+                  <span className="text-xl sm:text-2xl">{item.icon}</span>
+                  <span className="hidden sm:inline text-sm font-medium text-black">{item.label}</span>
                 </button>
               );
             }
@@ -71,20 +106,48 @@ export default function NextPage() {
           })}
         </div>
         <div className="w-full border-t border-gray-200 pt-4 sm:pt-6">
-          {sidebarSections[1].map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 last:mb-0 group px-1 sm:px-2 py-2 rounded-lg hover:bg-purple-50 transition"
-            >
-              <span className="text-xl sm:text-2xl transition-transform duration-300 group-hover:scale-125">{item.icon}</span>
-              <span className="hidden sm:inline text-sm font-medium text-gray-700 group-hover:text-purple-600 transition-colors duration-300 group-hover:underline">{item.label}</span>
-            </a>
-          ))}
+          {sidebarSections[1].map((item) => {
+            if (item.label === "About Us") {
+              return (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={() => router.push('/next/about')}
+                  className="flex items-center gap-2 group px-2 py-2 rounded-lg w-full text-left transition-colors cursor-pointer hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-4 sm:mb-5 last:mb-0"
+                >
+                  <span className="text-xl sm:text-2xl">{item.icon}</span>
+                  <span className="hidden sm:inline text-sm font-medium text-black">{item.label}</span>
+                </button>
+              );
+            }
+            if (item.label === "Contact Details") {
+              return (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={() => router.push('/next/contact')}
+                  className="flex items-center gap-2 group px-2 py-2 rounded-lg w-full text-left transition-colors cursor-pointer hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4 sm:mb-5 last:mb-0"
+                >
+                  <span className="text-xl sm:text-2xl">{item.icon}</span>
+                  <span className="hidden sm:inline text-sm font-medium text-black">{item.label}</span>
+                </button>
+              );
+            }
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 last:mb-0 group px-1 sm:px-2 py-2 rounded-lg hover:bg-purple-50 transition"
+              >
+                <span className="text-xl sm:text-2xl transition-transform duration-300 group-hover:scale-125">{item.icon}</span>
+                <span className="hidden sm:inline text-sm font-medium text-gray-700 group-hover:text-purple-600 transition-colors duration-300 group-hover:underline">{item.label}</span>
+              </a>
+            );
+          })}
         </div>
       </aside>
       {/* Main Content - responsive margin for sidebar */}
-      <div className="flex flex-col items-center w-full sm:ml-16 md:ml-20 lg:ml-56 justify-center min-h-screen px-2 sm:px-0">
+      <div className="flex flex-col items-center w-full sm:ml-64 md:ml-64 lg:ml-64 justify-center min-h-screen px-2 sm:px-0">
         <h1 className="text-2xl sm:text-4xl font-extrabold text-blue-700 mb-6 sm:mb-8 text-center drop-shadow-lg animate-fade-in">
           Please Select Mode to Travel
         </h1>

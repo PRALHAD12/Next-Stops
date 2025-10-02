@@ -16,10 +16,10 @@ export default function CancellationPage() {
           Feature Coming Soon
         </h1>
         <p className="text-gray-800 mb-6">
-           This Feature will coming soon!!  Until then, you can
-          talk to our team to get your ticket cancelled.
+          This Feature will coming soon!! Until then, you can talk to our team
+          to get your ticket cancelled.
         </p>
-        <div className="text-sm text-gray-500">Contact: +91-XXXXXXXXXX</div>
+        <div className="text-sm text-gray-500">Contact: +918421514348</div>
       </div>
       <style jsx>{`
         @keyframes fade-in {
