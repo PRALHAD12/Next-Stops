@@ -33,7 +33,7 @@ export default function PartnersPage() {
           {premiumPartners.map((name, idx) => (
             <div
               key={name}
-              className="flex flex-col items-center justify-center bg-gradient-to-br from-white via-pink-50 to-purple-100 rounded-2xl shadow-lg p-4 sm:p-6 border-2 border-pink-200 hover:scale-105 hover:shadow-2xl transition-transform duration-300 min-h-[120px] group relative"
+              className="flex flex-col items-center justify-center bg-gradient-to-br from-white via-pink-50 to-purple-100 rounded-2xl shadow-lg p-4 sm:p-6 border-2 border-pink-200 hover:scale-105 hover:shadow-2xl transition-transform duration-300 min-h-[120px] group relative cursor-pointer"
             >
               <span className="text-lg sm:text-xl font-bold text-gray-800 mb-2 text-center break-words group-hover:text-purple-700 transition-colors duration-300">
                 {name}

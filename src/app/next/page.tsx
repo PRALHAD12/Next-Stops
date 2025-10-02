@@ -45,11 +45,11 @@ export default function NextPage() {
       >
         {/* Mobile Close Button */}
         <button
-          className="sm:hidden absolute top-4 right-4 bg-gray-100 rounded-full p-2 shadow"
+          className="sm:hidden absolute top-4 right-4 bg-gray-800 text-white rounded-full p-3 shadow-lg border-2 border-white z-50"
           onClick={() => setSidebarOpen(false)}
           aria-label="Close sidebar"
         >
-          <span className="text-lg">✕</span>
+          <span className="text-2xl font-bold">✕</span>
         </button>
         {/* Main navigation */}
         <div className="w-full mb-8">
@@ -57,10 +57,10 @@ export default function NextPage() {
             <a
               key={item.label}
               href={item.href}
-              className="flex items-center gap-2 sm:gap-3 mb-6 last:mb-0 group px-1 sm:px-2 py-2 rounded-lg hover:bg-blue-50 transition"
+              className="flex items-center gap-2 sm:gap-3 mb-6 last:mb-0 group px-1 sm:px-2 py-2 rounded-lg hover:bg-blue-50 transition cursor-pointer"
             >
               <span className="text-xl sm:text-2xl transition-transform duration-300 group-hover:scale-125 animate-bounce-slow">{item.icon}</span>
-              <span className="hidden sm:inline text-sm font-semibold text-gray-700 group-hover:text-blue-600 transition-colors duration-300 group-hover:underline">{item.label}</span>
+              <span className="inline text-sm font-semibold text-black">{item.label}</span>
             </a>
           ))}
         </div>
@@ -76,7 +76,7 @@ export default function NextPage() {
                   className="flex items-center gap-2 group px-2 py-2 rounded-lg w-full text-left transition-colors cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4 sm:mb-5 last:mb-0"
                 >
                   <span className="text-xl sm:text-2xl">{item.icon}</span>
-                  <span className="hidden sm:inline text-sm font-medium text-black">{item.label}</span>
+                  <span className="inline text-sm font-semibold text-black">{item.label}</span>
                 </button>
               );
             }
@@ -89,7 +89,7 @@ export default function NextPage() {
                   className="flex items-center gap-2 group px-2 py-2 rounded-lg w-full text-left transition-colors cursor-pointer hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-400 mb-4 sm:mb-5 last:mb-0"
                 >
                   <span className="text-xl sm:text-2xl">{item.icon}</span>
-                  <span className="hidden sm:inline text-sm font-medium text-black">{item.label}</span>
+                  <span className="inline text-sm font-semibold text-black">{item.label}</span>
                 </button>
               );
             }
@@ -97,10 +97,10 @@ export default function NextPage() {
               <a
                 key={item.label}
                 href={item.href}
-                className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 last:mb-0 group px-1 sm:px-2 py-2 rounded-lg hover:bg-green-50 transition"
+                className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 last:mb-0 group px-1 sm:px-2 py-2 rounded-lg hover:bg-green-50 transition cursor-pointer"
               >
                 <span className="text-xl sm:text-2xl transition-transform duration-300 group-hover:scale-125">{item.icon}</span>
-                <span className="hidden sm:inline text-sm font-medium text-gray-700 group-hover:text-green-600 transition-colors duration-300 group-hover:underline">{item.label}</span>
+                <span className="inline text-sm font-semibold text-black">{item.label}</span>
               </a>
             );
           })}
@@ -116,7 +116,7 @@ export default function NextPage() {
                   className="flex items-center gap-2 group px-2 py-2 rounded-lg w-full text-left transition-colors cursor-pointer hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-4 sm:mb-5 last:mb-0"
                 >
                   <span className="text-xl sm:text-2xl">{item.icon}</span>
-                  <span className="hidden sm:inline text-sm font-medium text-black">{item.label}</span>
+                  <span className="inline text-sm font-semibold text-black">{item.label}</span>
                 </button>
               );
             }
@@ -129,7 +129,7 @@ export default function NextPage() {
                   className="flex items-center gap-2 group px-2 py-2 rounded-lg w-full text-left transition-colors cursor-pointer hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4 sm:mb-5 last:mb-0"
                 >
                   <span className="text-xl sm:text-2xl">{item.icon}</span>
-                  <span className="hidden sm:inline text-sm font-medium text-black">{item.label}</span>
+                  <span className="inline text-sm font-semibold text-black">{item.label}</span>
                 </button>
               );
             }
@@ -137,10 +137,10 @@ export default function NextPage() {
               <a
                 key={item.label}
                 href={item.href}
-                className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 last:mb-0 group px-1 sm:px-2 py-2 rounded-lg hover:bg-purple-50 transition"
+                className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 last:mb-0 group px-1 sm:px-2 py-2 rounded-lg hover:bg-purple-50 transition cursor-pointer"
               >
                 <span className="text-xl sm:text-2xl transition-transform duration-300 group-hover:scale-125">{item.icon}</span>
-                <span className="hidden sm:inline text-sm font-medium text-gray-700 group-hover:text-purple-600 transition-colors duration-300 group-hover:underline">{item.label}</span>
+                <span className="inline text-sm font-semibold text-black">{item.label}</span>
               </a>
             );
           })}

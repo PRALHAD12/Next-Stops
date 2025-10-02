@@ -28,7 +28,7 @@ export default function PreferencesPage() {
             <input type="radio" name="preference" value="affordable" className="accent-blue-600 text-black" />
             <span className="font-semibold text-gray-700">Affordable</span>
           </label>
-          <button type="submit" className="mt-6 w-full py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition">Submit</button>
+          <button type="submit" className="mt-6 w-full py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition cursor-pointer">Submit</button>
         </form>
       </div>
       <p className="text-sm text-gray-500 text-center max-w-md">

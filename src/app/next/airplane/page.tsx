@@ -73,7 +73,7 @@ export default function AirplaneForm() {
             <input name="mobile_number" type="tel" pattern="[0-9]{10}" className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 text-black" placeholder="Enter mobile number" required value={form.mobile_number} onChange={handleChange} />
           </div>
         </div>
-        <button type="submit" className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition">Next</button>
+        <button type="submit" className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition cursor-pointer">Next</button>
       </form>
     </main>
   );
