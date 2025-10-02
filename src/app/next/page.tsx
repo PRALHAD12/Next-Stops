@@ -1,7 +1,9 @@
 "use client";
+import React from "react";
 import Image from "next/image";
 
 export default function NextPage() {
+  const router = require('next/navigation').useRouter();
   const modes = [
     { label: "Travel's", color: "from-blue-500 to-blue-700", icon: "🚗" },
     { label: "AirPlane's", color: "from-green-400 to-blue-500", icon: "✈️" },
@@ -14,7 +16,7 @@ export default function NextPage() {
   const sidebarSections = [
     [
       { label: "Cancellation", icon: "❌", href: "/cancellation" },
-      { label: "Previous Booking History", icon: "📜", href: "/history" },
+      // { label: "Previous Booking History", icon: "📜", href: "/history" },
       { label: "Our Top Travelling Partner", icon: "🌟", href: "/partners" },
     ],
     [
@@ -42,16 +44,31 @@ export default function NextPage() {
         </div>
         {/* Professional sections */}
         <div className="w-full border-t border-gray-200 pt-4 sm:pt-6 mb-4 sm:mb-6">
-          {sidebarSections[0].map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 last:mb-0 group px-1 sm:px-2 py-2 rounded-lg hover:bg-green-50 transition"
-            >
-              <span className="text-xl sm:text-2xl transition-transform duration-300 group-hover:scale-125">{item.icon}</span>
-              <span className="hidden sm:inline text-sm font-medium text-gray-700 group-hover:text-green-600 transition-colors duration-300 group-hover:underline">{item.label}</span>
-            </a>
-          ))}
+          {sidebarSections[0].map((item) => {
+            if (item.label === "Cancellation") {
+              return (
+                <button
+                  key={item.label}
+                  type="button"
+                  onClick={() => router.push('/next/cancellation')}
+                  className="flex items-center gap-2 group px-2 py-2 rounded-lg w-full text-left transition-colors cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4 sm:mb-5 last:mb-0"
+                >
+                  <span className="text-xl sm:text-2xl">{item.icon}</span>
+                  <span className="hidden sm:inline text-sm font-medium text-gray-700">{item.label}</span>
+                </button>
+              );
+            }
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 last:mb-0 group px-1 sm:px-2 py-2 rounded-lg hover:bg-green-50 transition"
+              >
+                <span className="text-xl sm:text-2xl transition-transform duration-300 group-hover:scale-125">{item.icon}</span>
+                <span className="hidden sm:inline text-sm font-medium text-gray-700 group-hover:text-green-600 transition-colors duration-300 group-hover:underline">{item.label}</span>
+              </a>
+            );
+          })}
         </div>
         <div className="w-full border-t border-gray-200 pt-4 sm:pt-6">
           {sidebarSections[1].map((item) => (
