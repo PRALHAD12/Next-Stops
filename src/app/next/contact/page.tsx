@@ -73,7 +73,7 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-2">Rahil Bhai Patel</h3>
                 <p className="text-purple-600 font-medium mb-1">Founder & Managing Director</p>
-                <p className="text-slate-500 text-sm">Partner's Tours & Travels</p>
+                <p className="text-slate-500 text-sm">Partner&apos;s Tours & Travels</p>
               </div>
               
               <div className="space-y-4">

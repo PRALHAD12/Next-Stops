@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface SidebarProps {
   currentPath?: string;
@@ -99,7 +100,7 @@ export default function Sidebar({ currentPath }: SidebarProps) {
           <div className="flex items-center justify-between p-6 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg">
-                <img src="/next-stop.jpg" alt="NextStops Logo" className="w-full h-full object-cover" />
+                <Image src="/next-stop.jpg" alt="NextStops Logo" width={40} height={40} className="w-full h-full object-cover" />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-slate-800">NextStops</h1>

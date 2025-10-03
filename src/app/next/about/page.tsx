@@ -50,7 +50,7 @@ export default function AboutPage() {
                 </span>{" "}
                 in collaboration with{" "}
                 <span className="font-semibold text-blue-600">
-                  Partner's Tours & Travels
+                  Partner&apos;s Tours & Travels
                 </span>{" "}
                 and{" "}
                 <span className="font-semibold text-green-600">Callsahead</span>{" "}
@@ -144,7 +144,7 @@ export default function AboutPage() {
                   Founder & Managing Director, NextStops
                 </p>
                 <p className="text-slate-500 text-sm">
-                  Founder, Partner's Tours & Travels
+                  Founder, Partner&apos;s Tours & Travels
                 </p>
               </div>
             </div>

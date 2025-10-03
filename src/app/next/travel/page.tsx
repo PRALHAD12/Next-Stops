@@ -51,7 +51,7 @@ export default function TravelForm() {
       } else {
         alert("Error saving data: " + error.message);
       }
-    } catch (error) {
+    } catch {
       alert("An unexpected error occurred. Please try again.");
     } finally {
       setIsLoading(false);

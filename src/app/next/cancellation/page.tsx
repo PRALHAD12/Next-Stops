@@ -34,7 +34,7 @@ export default function CancellationPage() {
             
             <h2 className="text-2xl font-bold text-slate-900 mb-4">Feature Coming Soon</h2>
             <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-              We're working hard to bring you an automated cancellation system. Until then, our dedicated team is here to help you with all your cancellation needs.
+              We&apos;re working hard to bring you an automated cancellation system. Until then, our dedicated team is here to help you with all your cancellation needs.
             </p>
 
             {/* Contact Options */}

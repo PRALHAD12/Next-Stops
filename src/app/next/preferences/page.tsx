@@ -22,7 +22,7 @@ export default function PreferencesPage() {
         return;
       }
       router.push("/next/thankyou");
-    } catch (err) {
+    } catch {
       setError("An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);
