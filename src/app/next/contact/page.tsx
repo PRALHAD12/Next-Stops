@@ -1,54 +1,152 @@
 "use client";
-import Image from "next/image";
+import Sidebar from "../../components/Sidebar";
 
 export default function ContactPage() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 px-2 sm:px-4 relative">
-      <div className="absolute top-4 right-4 z-50">
-        <Image src="/new-logo.jpg" alt="Next Stops Logo" width={60} height={60} className="rounded-full shadow-lg" />
-      </div>
-      <div className="w-full max-w-2xl bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-6 sm:p-12 text-center animate-fade-in mx-auto border border-gray-200">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-blue-800 mb-6 drop-shadow-lg tracking-tight">Contact Us</h1>
-        <p className="text-base sm:text-lg text-gray-700 mb-8 leading-relaxed">
-          We’d love to hear from you! Reach out to us anytime through the details below.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
-          <div className="flex flex-col items-center bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 rounded-xl shadow p-4 border border-blue-200">
-            <span className="text-lg font-bold text-blue-700 mb-1">Ajaysingh Shekhawat</span>
-            <span className="text-sm text-gray-700 mb-1">Founder & CEO, NextStops</span>
-            <span className="flex items-center gap-2 text-sm text-green-700 mb-1">📱 WhatsApp: <span className="font-semibold">+91 7219748513</span></span>
-            <span className="flex items-center gap-2 text-sm text-purple-700">✉ Email: <span className="font-semibold">ajaysingh1rty@gmail.com</span></span>
+    <div className="flex min-h-screen bg-slate-50">
+      <Sidebar currentPath="/next/contact" />
+      
+      <main className="flex-1 p-6 lg:p-8">
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="mb-8 animate-fade-in-up">
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-slate-900">Contact Us</h1>
+                <p className="text-slate-600">Get in touch with our team</p>
+              </div>
+            </div>
+            <div className="w-full h-px bg-gradient-to-r from-green-600 via-blue-400 to-transparent"></div>
           </div>
-          <div className="flex flex-col items-center bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 rounded-xl shadow p-4 border border-pink-200">
-            <span className="text-lg font-bold text-pink-700 mb-1">Rahil Bhai Patel</span>
-            <span className="text-sm text-gray-700 mb-1">Founder & Managing Director, NextStops</span>
-            <span className="flex items-center gap-2 text-sm text-green-700 mb-1">📱 WhatsApp: <span className="font-semibold">+91 8421514348</span></span>
-            <span className="flex items-center gap-2 text-sm text-purple-700">✉ Email: <span className="font-semibold">rahilp756@gmail.com</span></span>
+
+          {/* Contact Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            {/* Ajaysingh Contact */}
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+              <div className="text-center mb-6">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
+                  AS
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Ajaysingh Shekhawat</h3>
+                <p className="text-blue-600 font-medium mb-1">Founder & CEO, NextStops</p>
+                <p className="text-slate-500 text-sm">Co-founder, Callsahead</p>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                  <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm text-green-700 font-medium">WhatsApp</p>
+                    <p className="text-green-800 font-semibold">+91 7219748513</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm text-blue-700 font-medium">Email</p>
+                    <p className="text-blue-800 font-semibold text-sm">ajaysingh1rty@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Rahil Contact */}
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+              <div className="text-center mb-6">
+                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
+                  RP
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">Rahil Bhai Patel</h3>
+                <p className="text-purple-600 font-medium mb-1">Founder & Managing Director</p>
+                <p className="text-slate-500 text-sm">Partner's Tours & Travels</p>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                  <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm text-green-700 font-medium">WhatsApp</p>
+                    <p className="text-green-800 font-semibold">+91 8421514348</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-3 p-3 bg-purple-50 rounded-lg border border-purple-200">
+                  <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm text-purple-700 font-medium">Email</p>
+                    <p className="text-purple-800 font-semibold text-sm">rahilp756@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Office & License Info */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl p-6 border border-slate-200">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-10 h-10 bg-slate-600 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">Office Address</h3>
+              </div>
+              <div className="text-slate-600 leading-relaxed">
+                <p>Near Datta Mandir Bus Stand,</p>
+                <p>Bhadgaon Road, Chalisgaon,</p>
+                <p>District Jalgaon, Maharashtra</p>
+              </div>
+            </div>
+            
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-blue-900">License Details</h3>
+              </div>
+              <div className="space-y-2 text-sm">
+                <div>
+                  <p className="text-blue-700 font-medium">Receipt Number:</p>
+                  <p className="text-blue-800 font-semibold">2520800319931176</p>
+                </div>
+                <div>
+                  <p className="text-blue-700 font-medium">Application ID:</p>
+                  <p className="text-blue-800 font-semibold">103263493403</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 rounded-xl shadow p-4 border border-purple-200 mb-8">
-          <h2 className="text-xl font-bold text-purple-700 mb-2">Office Address</h2>
-          <p className="text-sm text-gray-700">
-            Near Datta Mandir Bus Stand,<br />
-            Bhadgaon Road, Chalisgaon,<br />
-            District Jalgaon, Maharashtra
-          </p>
-        </div>
-        <div className="bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50 rounded-xl shadow p-4 border border-pink-200">
-          <h2 className="text-xl font-bold text-pink-700 mb-2">License Details</h2>
-          <p className="text-sm text-gray-700 mb-1">(Receipt Number): <span className="font-semibold">2520800319931176</span></p>
-          <p className="text-sm text-gray-700">(Application ID Number): <span className="font-semibold">103263493403</span></p>
-        </div>
-      </div>
-      <style jsx>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.8s cubic-bezier(0.4,0,0.2,1) both;
-        }
-      `}</style>
-    </main>
+      </main>
+    </div>
   );
 }

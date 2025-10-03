@@ -188,7 +188,7 @@ export default function Sidebar({ currentPath }: SidebarProps) {
           {/* Footer */}
           <div className="p-6 border-t border-slate-200 bg-gradient-to-r from-slate-50 to-white">
             <div className="text-xs text-slate-500 text-center">
-              © 2024 Next Stops. All rights reserved.
+              © 2025 Next Stops. All rights reserved.
             </div>
           </div>
         </div>
