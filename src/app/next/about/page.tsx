@@ -204,7 +204,7 @@ export default function AboutPage() {
                 Our Vision
               </h3>
               <p className="text-purple-700">
-                To become India's most trusted travel platform, connecting every
+                To become India&apos;s most trusted travel platform, connecting every
                 destination with reliable, comfortable, and affordable
                 transportation.
               </p>
