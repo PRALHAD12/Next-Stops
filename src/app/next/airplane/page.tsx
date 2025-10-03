@@ -71,11 +71,11 @@ export default function AirplaneForm() {
               <input name="age" type="number" min="1" max="120" className="w-full px-4 py-2 border-2 border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-400 text-black bg-blue-50 placeholder-gray-400" placeholder="Enter your age" required value={form.age} onChange={handleChange} />
             </div>
             <div>
-              <label className="block mb-2 font-semibold text-blue-700">Pickup Point</label>
+              <label className="block mb-2 font-semibold text-blue-700">Take off Point</label>
               <input name="pickup_point" type="text" className="w-full px-4 py-2 border-2 border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-400 text-black bg-blue-50 placeholder-gray-400" placeholder="Enter pickup location" required value={form.pickup_point} onChange={handleChange} />
             </div>
             <div>
-              <label className="block mb-2 font-semibold text-blue-700">Dropping Point</label>
+              <label className="block mb-2 font-semibold text-blue-700">landing Point</label>
               <input name="dropping_point" type="text" className="w-full px-4 py-2 border-2 border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-400 text-black bg-blue-50 placeholder-gray-400" placeholder="Enter dropping location" required value={form.dropping_point} onChange={handleChange} />
             </div>
             <div>
