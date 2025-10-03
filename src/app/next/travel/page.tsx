@@ -62,7 +62,7 @@ export default function TravelForm() {
     <div className="flex min-h-screen bg-slate-50">
       <Sidebar currentPath="/next/travel" />
       
-      <main className="flex-1 lg:ml-80 p-6 lg:p-8">
+      <main className="flex-1 p-6 lg:p-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="mb-8 animate-fade-in-up">
