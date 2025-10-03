@@ -90,7 +90,7 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Why Choose Next Stops?</h2>
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">Why Choose NextStops?</h2>
             <p className="text-xl text-slate-600">Experience travel like never before with our premium services</p>
           </div>
           

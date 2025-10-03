@@ -31,7 +31,7 @@ export default function ThankYouPage() {
               🎉 Booking Confirmed!
             </h2>
             <p className="text-lg text-slate-600 leading-relaxed mb-6">
-              We appreciate your trust in Next Stops. Our team will contact you soon with your travel details and preferences. Get ready for an amazing journey!
+              We appreciate your trust in NextStops. Our team will contact you soon with your travel details and preferences. Get ready for an amazing journey!
             </p>
             
             {/* Features */}
@@ -72,7 +72,7 @@ export default function ThankYouPage() {
 
           {/* Brand Message */}
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-6 text-white">
-            <h3 className="text-2xl font-bold mb-2">Next Stops</h3>
+            <h3 className="text-2xl font-bold mb-2">NextStops</h3>
             <p className="text-blue-100 text-lg font-medium">Your Journey, Our Priority</p>
             <div className="flex justify-center space-x-4 mt-4">
               <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
