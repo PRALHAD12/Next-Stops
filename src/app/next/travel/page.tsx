@@ -3,7 +3,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Image from "next/image";
+import Sidebar from "../../components/Sidebar";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL ||
@@ -23,6 +23,7 @@ export default function TravelForm() {
     mobile_number: "",
     preferences: ""
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -30,73 +31,202 @@ export default function TravelForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Insert into Supabase
-    const { error } = await supabase.from("customers").insert([
-      {
-        name: form.name,
-        gender: form.gender,
-        age: form.age,
-        pickup_point: form.pickup_point,
-        dropping_point: form.dropping_point,
-        mobile_number: form.mobile_number,
-        preferences: form.preferences
+    setIsLoading(true);
+    
+    try {
+      const { error } = await supabase.from("customers").insert([
+        {
+          name: form.name,
+          gender: form.gender,
+          age: form.age,
+          pickup_point: form.pickup_point,
+          dropping_point: form.dropping_point,
+          mobile_number: form.mobile_number,
+          preferences: form.preferences
+        }
+      ]);
+      
+      if (!error) {
+        router.push("/next/preferences");
+      } else {
+        alert("Error saving data: " + error.message);
       }
-    ]);
-    if (!error) {
-      router.push("/next/preferences");
-    } else {
-      alert("Error saving data: " + error.message);
+    } catch (error) {
+      alert("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-2 sm:px-8 py-6 bg-gradient-to-br from-blue-100 via-white to-blue-200">
-      <div className="w-full max-w-lg mx-auto">
-        <form className="bg-white rounded-3xl shadow-2xl px-8 py-10 animate-fade-in-card border border-blue-100" onSubmit={handleSubmit}>
-          <div className="flex flex-col items-center mb-8">
-            <span className="inline-block bg-blue-600 rounded-full p-4 mb-2 shadow-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-8 h-8">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1.5m0 0A2.25 2.25 0 009.75 7.5h4.5A2.25 2.25 0 0012 4.5zm0 0V3m0 1.5v1.5m0 0A2.25 2.25 0 009.75 7.5h4.5A2.25 2.25 0 0012 4.5zm0 0V3" />
-              </svg>
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-blue-700 mb-2 text-center tracking-tight">Travel - Customer Information</h2>
-            <div className="w-16 h-1 bg-blue-200 rounded-full mb-2"></div>
-            <p className="text-gray-500 text-center text-sm">Fill in your details to book your travel journey with Next Stops.</p>
+    <div className="flex min-h-screen bg-slate-50">
+      <Sidebar currentPath="/next/travel" />
+      
+      <main className="flex-1 lg:ml-80 p-6 lg:p-8">
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="mb-8 animate-fade-in-up">
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-slate-900">Travel Booking</h1>
+                <p className="text-slate-600">Complete your travel reservation details</p>
+              </div>
+            </div>
+            <div className="w-full h-px bg-gradient-to-r from-blue-600 via-blue-400 to-transparent"></div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-            <div>
-              <label className="block mb-2 font-semibold text-blue-700">Name</label>
-              <input name="name" type="text" className="w-full px-4 py-2 border-2 border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-400 text-black bg-blue-50 placeholder-gray-400" placeholder="Enter your name" required value={form.name} onChange={handleChange} />
-            </div>
-            <div>
-              <label className="block mb-2 font-semibold text-blue-700">Gender</label>
-              <select name="gender" className="w-full px-4 py-2 border-2 border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-400 text-black bg-blue-50" required value={form.gender} onChange={handleChange}>
-                <option value="">Select gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div>
-              <label className="block mb-2 font-semibold text-blue-700">Age</label>
-              <input name="age" type="number" min="1" max="120" className="w-full px-4 py-2 border-2 border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-400 text-black bg-blue-50 placeholder-gray-400" placeholder="Enter your age" required value={form.age} onChange={handleChange} />
-            </div>
-            <div>
-              <label className="block mb-2 font-semibold text-blue-700">Pickup Point</label>
-              <input name="pickup_point" type="text" className="w-full px-4 py-2 border-2 border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-400 text-black bg-blue-50 placeholder-gray-400" placeholder="Enter pickup location" required value={form.pickup_point} onChange={handleChange} />
-            </div>
-            <div>
-              <label className="block mb-2 font-semibold text-blue-700">Dropping Point</label>
-              <input name="dropping_point" type="text" className="w-full px-4 py-2 border-2 border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-400 text-black bg-blue-50 placeholder-gray-400" placeholder="Enter dropping location" required value={form.dropping_point} onChange={handleChange} />
-            </div>
-            <div>
-              <label className="block mb-2 font-semibold text-blue-700">Mobile Number</label>
-              <input name="mobile_number" type="tel" pattern="[0-9]{10}" className="w-full px-4 py-2 border-2 border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-400 text-black bg-blue-50 placeholder-gray-400" placeholder="Enter mobile number" required value={form.mobile_number} onChange={handleChange} />
-            </div>
+
+          {/* Form Card */}
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 animate-scale-in">
+            <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Personal Information Section */}
+              <div>
+                <h2 className="text-xl font-semibold text-slate-900 mb-6 flex items-center">
+                  <svg className="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  Personal Information
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Full Name</label>
+                    <input
+                      name="name"
+                      type="text"
+                      required
+                      value={form.name}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white text-slate-900 placeholder-slate-400"
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Gender</label>
+                    <select
+                      name="gender"
+                      required
+                      value={form.gender}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white text-slate-900"
+                    >
+                      <option value="">Select gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Age</label>
+                    <input
+                      name="age"
+                      type="number"
+                      min="1"
+                      max="120"
+                      required
+                      value={form.age}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white text-slate-900 placeholder-slate-400"
+                      placeholder="Enter age"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Travel Details Section */}
+              <div>
+                <h2 className="text-xl font-semibold text-slate-900 mb-6 flex items-center">
+                  <svg className="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  Travel Details
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Pickup Location</label>
+                    <input
+                      name="pickup_point"
+                      type="text"
+                      required
+                      value={form.pickup_point}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white text-slate-900 placeholder-slate-400"
+                      placeholder="Enter pickup location"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Drop-off Location</label>
+                    <input
+                      name="dropping_point"
+                      type="text"
+                      required
+                      value={form.dropping_point}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white text-slate-900 placeholder-slate-400"
+                      placeholder="Enter drop-off location"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Information Section */}
+              <div>
+                <h2 className="text-xl font-semibold text-slate-900 mb-6 flex items-center">
+                  <svg className="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  Contact Information
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Mobile Number</label>
+                    <input
+                      name="mobile_number"
+                      type="tel"
+                      pattern="[0-9]{10}"
+                      required
+                      value={form.mobile_number}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white text-slate-900 placeholder-slate-400"
+                      placeholder="Enter 10-digit mobile number"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <div className="pt-6 border-t border-slate-200">
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full md:w-auto px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg shadow-lg hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                >
+                  {isLoading ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Processing...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Complete Booking</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
           </div>
-          <button type="submit" className="w-full py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-bold rounded-xl shadow-lg hover:scale-105 hover:from-blue-600 hover:to-blue-800 transition-transform duration-200 cursor-pointer text-lg">Book Travel Ticket</button>
-        </form>
-      </div>
-    </main>
+        </div>
+      </main>
+    </div>
   );
 }

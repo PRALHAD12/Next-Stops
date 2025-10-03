@@ -1,205 +1,146 @@
 "use client";
-import React, { useState } from "react";
-import Image from "next/image";
+import React from "react";
+import { useRouter } from "next/navigation";
+import Sidebar from "../components/Sidebar";
 
 export default function NextPage() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const router = require('next/navigation').useRouter();
+  const router = useRouter();
+  
   const modes = [
-    { label: "Travel's", color: "from-blue-500 to-blue-700", icon: "🚗" },
-    { label: "AirPlane's", color: "from-green-400 to-blue-500", icon: "✈️" },
-    { label: "Train", color: "from-yellow-400 to-yellow-600", icon: "🚆" },
-    { label: "Tour Package's", color: "from-purple-500 to-pink-500", icon: "🎒" },
-  ];
-  const sidebarItems = [
-    { label: "Home", icon: "🏠", href: "/" },
-  ];
-  const sidebarSections = [
-    [
-      { label: "Cancellation", icon: "❌", href: "/cancellation" },
-      // { label: "Previous Booking History", icon: "📜", href: "/history" },
-      { label: "Our Top Travelling Partner", icon: "🌟", href: "/partners" },
-    ],
-    [
-      { label: "About Us", icon: "ℹ️", href: "/about" },
-      { label: "Contact Details", icon: "📞", href: "/contact" },
-    ],
+    { 
+      label: "Road Travel", 
+      description: "Book cars, buses & taxis",
+      color: "from-blue-600 to-blue-700", 
+      icon: "🚗",
+      href: "/next/travel"
+    },
+    { 
+      label: "Air Travel", 
+      description: "Flight bookings & services",
+      color: "from-sky-500 to-blue-600", 
+      icon: "✈️",
+      href: "/next/airplane"
+    },
+    { 
+      label: "Rail Travel", 
+      description: "Train tickets & reservations",
+      color: "from-emerald-500 to-teal-600", 
+      icon: "🚆",
+      href: "/next/train"
+    },
+    { 
+      label: "Tour Packages", 
+      description: "Complete travel experiences",
+      color: "from-purple-600 to-pink-600", 
+      icon: "🎒",
+      href: "/next/tour"
+    },
   ];
 
   return (
-    <main className="flex min-h-screen bg-gradient-to-br from-gray-100 to-gray-300">
-      {/* Mobile Sidebar Toggle Button */}
-      <button
-        className="sm:hidden fixed top-4 left-4 z-50 bg-white rounded-full shadow-lg p-2 border border-gray-300"
-        onClick={() => setSidebarOpen(true)}
-        aria-label="Open sidebar"
-      >
-        <span className="text-xl">☰</span>
-      </button>
-      {/* Sidebar - responsive */}
-      <aside
-        className={`
-          ${sidebarOpen ? "flex" : "hidden"}
-          sm:flex flex-col items-center py-8 px-2 sm:px-4 w-64 sm:w-56 bg-white bg-opacity-90 shadow-xl rounded-r-3xl animate-slide-in-sidebar fixed left-0 top-0 h-full z-40
-        `}
-      >
-        {/* Mobile Close Button */}
-        <button
-          className="sm:hidden absolute top-4 right-4 bg-gray-800 text-white rounded-full p-3 shadow-lg border-2 border-white z-50"
-          onClick={() => setSidebarOpen(false)}
-          aria-label="Close sidebar"
-        >
-          <span className="text-2xl font-bold">✕</span>
-        </button>
-        {/* Main navigation */}
-        <div className="w-full mb-8">
-          {sidebarItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="flex items-center gap-2 sm:gap-3 mb-6 last:mb-0 group px-1 sm:px-2 py-2 rounded-lg hover:bg-blue-50 transition cursor-pointer"
-            >
-              <span className="text-xl sm:text-2xl transition-transform duration-300 group-hover:scale-125 animate-bounce-slow">{item.icon}</span>
-              <span className="inline text-sm font-semibold text-black">{item.label}</span>
-            </a>
-          ))}
-        </div>
-        {/* Professional sections */}
-        <div className="w-full border-t border-gray-200 pt-4 sm:pt-6 mb-4 sm:mb-6">
-          {sidebarSections[0].map((item) => {
-            if (item.label === "Cancellation") {
-              return (
-                <button
-                  key={item.label}
-                  type="button"
-                  onClick={() => router.push('/next/cancellation')}
-                  className="flex items-center gap-2 group px-2 py-2 rounded-lg w-full text-left transition-colors cursor-pointer hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4 sm:mb-5 last:mb-0"
-                >
-                  <span className="text-xl sm:text-2xl">{item.icon}</span>
-                  <span className="inline text-sm font-semibold text-black">{item.label}</span>
-                </button>
-              );
-            }
-            if (item.label === "Our Top Travelling Partner") {
-              return (
-                <button
-                  key={item.label}
-                  type="button"
-                  onClick={() => router.push('/next/partners')}
-                  className="flex items-center gap-2 group px-2 py-2 rounded-lg w-full text-left transition-colors cursor-pointer hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-green-400 mb-4 sm:mb-5 last:mb-0"
-                >
-                  <span className="text-xl sm:text-2xl">{item.icon}</span>
-                  <span className="inline text-sm font-semibold text-black">{item.label}</span>
-                </button>
-              );
-            }
-            return (
-              <a
-                key={item.label}
-                href={item.href}
-                className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 last:mb-0 group px-1 sm:px-2 py-2 rounded-lg hover:bg-green-50 transition cursor-pointer"
-              >
-                <span className="text-xl sm:text-2xl transition-transform duration-300 group-hover:scale-125">{item.icon}</span>
-                <span className="inline text-sm font-semibold text-black">{item.label}</span>
-              </a>
-            );
-          })}
-        </div>
-        <div className="w-full border-t border-gray-200 pt-4 sm:pt-6">
-          {sidebarSections[1].map((item) => {
-            if (item.label === "About Us") {
-              return (
-                <button
-                  key={item.label}
-                  type="button"
-                  onClick={() => router.push('/next/about')}
-                  className="flex items-center gap-2 group px-2 py-2 rounded-lg w-full text-left transition-colors cursor-pointer hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-400 mb-4 sm:mb-5 last:mb-0"
-                >
-                  <span className="text-xl sm:text-2xl">{item.icon}</span>
-                  <span className="inline text-sm font-semibold text-black">{item.label}</span>
-                </button>
-              );
-            }
-            if (item.label === "Contact Details") {
-              return (
-                <button
-                  key={item.label}
-                  type="button"
-                  onClick={() => router.push('/next/contact')}
-                  className="flex items-center gap-2 group px-2 py-2 rounded-lg w-full text-left transition-colors cursor-pointer hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4 sm:mb-5 last:mb-0"
-                >
-                  <span className="text-xl sm:text-2xl">{item.icon}</span>
-                  <span className="inline text-sm font-semibold text-black">{item.label}</span>
-                </button>
-              );
-            }
-            return (
-              <a
-                key={item.label}
-                href={item.href}
-                className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 last:mb-0 group px-1 sm:px-2 py-2 rounded-lg hover:bg-purple-50 transition cursor-pointer"
-              >
-                <span className="text-xl sm:text-2xl transition-transform duration-300 group-hover:scale-125">{item.icon}</span>
-                <span className="inline text-sm font-semibold text-black">{item.label}</span>
-              </a>
-            );
-          })}
-        </div>
-      </aside>
-      {/* Main Content - responsive margin for sidebar */}
-      <div className="flex flex-col items-center w-full sm:ml-64 md:ml-64 lg:ml-64 justify-center min-h-screen px-2 sm:px-0">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-blue-700 mb-6 sm:mb-8 text-center drop-shadow-lg animate-fade-in">
-          Please Select Mode to Travel
-        </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 w-full max-w-xs sm:max-w-2xl mb-8 sm:mb-10">
-          {modes.map((mode) => {
-            let href = "/next/travel";
-            if (mode.label === "AirPlane's") href = "/next/airplane";
-            else if (mode.label === "Train") href = "/next/train";
-            else if (mode.label === "Tour Package's") href = "/next/tour";
-            return (
-              <a
+    <div className="flex min-h-screen bg-slate-50">
+      <Sidebar currentPath="/next" />
+      
+      <main className="flex-1 p-6 lg:p-8">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12 animate-fade-in-up">
+            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
+              Choose Your Travel Mode
+            </h1>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+              Select from our comprehensive travel services to plan your perfect journey
+            </p>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-6 rounded-full"></div>
+          </div>
+
+          {/* Travel Mode Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 animate-scale-in">
+            {modes.map((mode, index) => (
+              <div
                 key={mode.label}
-                href={href}
-                className={`group flex flex-col items-center justify-center px-6 sm:px-8 py-8 sm:py-10 rounded-2xl shadow-xl bg-gradient-to-br ${mode.color} text-white font-bold text-lg sm:text-xl transition-transform duration-300 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-blue-300 animate-fade-in-card`}
+                className="group cursor-pointer"
+                onClick={() => router.push(mode.href)}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <span className="text-4xl sm:text-5xl mb-3 sm:mb-4 animate-bounce-slow">{mode.icon}</span>
-                <span className="group-hover:underline">{mode.label}</span>
-              </a>
-            );
-          })}
+                <div className={`
+                  relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 
+                  bg-gradient-to-br ${mode.color} p-8 h-64 flex flex-col justify-between
+                  transform hover:scale-105 hover:-translate-y-2
+                `}>
+                  {/* Background Pattern */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute -top-4 -right-4 w-24 h-24 bg-white rounded-full"></div>
+                    <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-white rounded-full"></div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="text-6xl transform group-hover:scale-110 transition-transform duration-300">
+                        {mode.icon}
+                      </div>
+                      <div className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
+                    
+                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-opacity-90 transition-colors">
+                      {mode.label}
+                    </h3>
+                    <p className="text-white text-opacity-90 text-sm leading-relaxed">
+                      {mode.description}
+                    </p>
+                  </div>
+                  
+                  {/* Bottom Action */}
+                  <div className="relative z-10 flex items-center text-white text-sm font-medium">
+                    <span className="group-hover:underline">Book Now</span>
+                    <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in-up">
+            <div className="text-center p-6">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">24/7 Support</h3>
+              <p className="text-slate-600 text-sm">Round-the-clock customer assistance for all your travel needs</p>
+            </div>
+            
+            <div className="text-center p-6">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">Secure Booking</h3>
+              <p className="text-slate-600 text-sm">Safe and secure payment processing with instant confirmation</p>
+            </div>
+            
+            <div className="text-center p-6">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">Instant Booking</h3>
+              <p className="text-slate-600 text-sm">Quick and easy booking process with immediate confirmation</p>
+            </div>
+          </div>
         </div>
-      </div>
-      <style jsx>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.8s cubic-bezier(0.4,0,0.2,1) both;
-        }
-        @keyframes fade-in-card {
-          from { opacity: 0; transform: scale(0.95); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        .animate-fade-in-card {
-          animation: fade-in-card 0.7s cubic-bezier(0.4,0,0.2,1) both;
-        }
-        @keyframes bounce-slow {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-        .animate-bounce-slow {
-          animation: bounce-slow 1.5s infinite;
-        }
-        @keyframes slide-in-sidebar {
-          from { opacity: 0; transform: translateX(-40px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-        .animate-slide-in-sidebar {
-          animation: slide-in-sidebar 0.7s cubic-bezier(0.4,0,0.2,1) both;
-        }
-      `}</style>
-    </main>
+      </main>
+    </div>
   );
 }
