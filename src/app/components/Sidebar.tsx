@@ -90,7 +90,7 @@ export default function Sidebar({ currentPath }: SidebarProps) {
                 <span className="text-white font-bold text-lg">NS</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-slate-800">Next Stops</h1>
+                <h1 className="text-xl font-bold text-slate-800">NextStops</h1>
                 <p className="text-xs text-slate-500">Travel Management</p>
               </div>
             </div>
