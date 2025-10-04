@@ -44,7 +44,7 @@ export default function ThankYouPage() {
               <div className="text-center p-4">
                 <div className="text-2xl mb-2">📞</div>
                 <div className="text-sm font-medium text-slate-700">Call from Team</div>
-                <div className="text-xs text-slate-500">Within 24 hours</div>
+                <div className="text-xs text-slate-500">Within 20 minutes</div>
               </div>
               <div className="text-center p-4">
                 <div className="text-2xl mb-2">🎫</div>
