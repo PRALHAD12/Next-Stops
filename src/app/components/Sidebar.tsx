@@ -100,7 +100,7 @@ export default function Sidebar({ currentPath }: SidebarProps) {
           <div className="flex items-center justify-between p-6 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white">
             <div className="flex items-center space-x-3">
               <div className="w-16 h-12 rounded-xl overflow-hidden bg-white/50 border border-slate-100 shadow-sm">
-                <Image src="/next-stop.jpg" alt="NextStops Logo" width={64} height={48} className="w-full h-full object-contain" />
+                <Image src="/next-stop.png" alt="NextStops Logo" width={64} height={48} className="w-full h-full object-contain" />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-slate-800">NextStops</h1>
