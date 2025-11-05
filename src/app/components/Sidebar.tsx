@@ -220,16 +220,13 @@ export default function Sidebar({ currentPath }: SidebarProps) {
               <div className="flex items-center justify-center space-x-1">
                 <span className="text-slate-500">Developed</span>
                 <span className="text-slate-500">by</span>
-              <div className="mt-1 flex items-center justify-center space-x-1">
-                <span className="font-bold text-sm bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-pulse">
-                  Pralhad~
-                </span>
-                <span className="text-blue-500 animate-bounce">💙</span>
+              <span className="text-gray-800">Pralhad~</span>
+        
               </div>
               </div>
             </div>
           </div>
-        </div>
+     
       </aside>
     </>
   );
