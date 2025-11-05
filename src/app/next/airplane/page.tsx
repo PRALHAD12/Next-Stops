@@ -20,8 +20,8 @@ export default function AirplaneForm() {
     name: "",
     gender: "",
     age: "",
-    pickup_point: "",
-    dropping_point: "",
+    departure_airport: "",
+    arrival_airport: "",
     mobile_number: "",
     preferences: "Airplane"
   });
@@ -41,8 +41,8 @@ export default function AirplaneForm() {
           name: form.name,
           gender: form.gender,
           age: form.age,
-          pickup_point: form.pickup_point,
-          dropping_point: form.dropping_point,
+          pickup_point: form.departure_airport,
+          dropping_point: form.arrival_airport,
           mobile_number: form.mobile_number,
           preferences: form.preferences
         }
@@ -151,10 +151,10 @@ export default function AirplaneForm() {
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">Departure Airport</label>
                     <input
-                      name="pickup_point"
+                      name="departure_airport"
                       type="text"
                       required
-                      value={form.pickup_point}
+                      value={form.departure_airport}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-colors bg-white text-slate-900 placeholder-slate-400"
                       placeholder="Enter departure city/airport"
@@ -163,10 +163,10 @@ export default function AirplaneForm() {
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">Arrival Airport</label>
                     <input
-                      name="dropping_point"
+                      name="arrival_airport"
                       type="text"
                       required
-                      value={form.dropping_point}
+                      value={form.arrival_airport}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-colors bg-white text-slate-900 placeholder-slate-400"
                       placeholder="Enter arrival city/airport"
