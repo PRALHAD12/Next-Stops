@@ -20,6 +20,7 @@ export default function AirplaneForm() {
     name: "",
     gender: "",
     age: "",
+    passenger_count: "1",
     departure_airport: "",
     arrival_airport: "",
     mobile_number: "",
@@ -41,6 +42,7 @@ export default function AirplaneForm() {
           name: form.name,
           gender: form.gender,
           age: form.age,
+          passenger_count: Number(form.passenger_count ?? 1),
           pickup_point: form.departure_airport,
           dropping_point: form.arrival_airport,
           mobile_number: form.mobile_number,
@@ -94,7 +96,7 @@ export default function AirplaneForm() {
                   </svg>
                   Passenger Information
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">Full Name</label>
                     <input
@@ -120,6 +122,25 @@ export default function AirplaneForm() {
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                       <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Passengers</label>
+                    <select
+                      name="passenger_count"
+                      required
+                      value={form.passenger_count}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-colors bg-white text-slate-900"
+                    >
+                      {Array.from({ length: 20 }, (_, i) => {
+                        const val = String(i + 1);
+                        return (
+                          <option key={val} value={val}>
+                            {val}
+                          </option>
+                        );
+                      })}
                     </select>
                   </div>
                   <div>

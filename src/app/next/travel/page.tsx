@@ -19,6 +19,7 @@ export default function TravelForm() {
     name: "",
     gender: "",
     age: "",
+    passenger_count: "1",
     pickup_point: "",
     dropping_point: "",
     mobile_number: "",
@@ -40,6 +41,7 @@ export default function TravelForm() {
           name: form.name,
           gender: form.gender,
           age: form.age,
+          passenger_count: Number(form.passenger_count ?? 1),
           pickup_point: form.pickup_point,
           dropping_point: form.dropping_point,
           mobile_number: form.mobile_number,
@@ -92,7 +94,7 @@ export default function TravelForm() {
                   </svg>
                   Personal Information
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">Full Name</label>
                     <input
@@ -118,6 +120,25 @@ export default function TravelForm() {
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                       <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Passengers</label>
+                    <select
+                      name="passenger_count"
+                      required
+                      value={form.passenger_count}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors bg-white text-slate-900"
+                    >
+                      {Array.from({ length: 20 }, (_, i) => {
+                        const val = String(i + 1);
+                        return (
+                          <option key={val} value={val}>
+                            {val}
+                          </option>
+                        );
+                      })}
                     </select>
                   </div>
                   <div>
