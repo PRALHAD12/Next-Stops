@@ -5,13 +5,15 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Sidebar from "../../components/Sidebar";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+function getSupabaseClient() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseKey) {
-  throw new Error("Missing Supabase environment variables");
+  if (!supabaseUrl || !supabaseKey) {
+    throw new Error("Missing Supabase environment variables");
+  }
+  return createClient(supabaseUrl, supabaseKey);
 }
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function TravelForm() {
   const router = useRouter();
@@ -36,6 +38,7 @@ export default function TravelForm() {
     setIsLoading(true);
     
     try {
+      const supabase = getSupabaseClient();
       const { error } = await supabase.from("customers").insert([
         {
           name: form.name,
